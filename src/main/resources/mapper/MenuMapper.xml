@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianyuan.dao.MenuDao" >
+
+    <resultMap id="all" type="com.qianyuan.entity.test.LcMenu">
+        <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+        <result column="menu_name" property="menuName"/>
+        <result column="menu_parent_id" property="menuPartentId"/>
+        <collection property="list" javaType="java.util.List" ofType="com.qianyuan.entity.test.LcMenu">
+            <result column="menuid" property="menuId"/>
+            <result column="menuname" property="menuName"/>
+        </collection>
+    </resultMap>
+
+    <select id="getMenu" resultMap="all">
+SELECT m1.menu_id,m1.menu_name,m2.menu_id menuid,m2.menu_name menuname
+from lc_menu m1 LEFT JOIN lc_menu m2 on m1.menu_id=m2.menu_partent_id
+WHERE m1.menu_partent_id is null
+
+    </select>
+
+    <select id="getOne" resultMap="all" parameterType="java.lang.Integer">
+        select * from lc_menu where menu_id=#{menu_id}
+    </select>
+</mapper>

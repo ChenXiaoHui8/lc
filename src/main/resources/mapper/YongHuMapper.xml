@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianyuan.dao.YongHuDao" >
+
+    <resultMap id="yonghu" type="com.qianyuan.entity.cangchudian01.Yonghu">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="roleId" property="roleId"/>
+        <result column="userName" property="userName"/>
+        <result column="nickName" property="nickName"/>
+        <result column="password" property="password"/>
+        <result column="pwdKey" property="pwdKey"/>
+        <result column="phone" property="phone"/>
+        <result column="remark" property="remark"/>
+        <result column="used" property="used"/>
+        <result column="flag" property="flag"/>
+        <result column="state" property="state"/>
+        <result column="state" property="state"/>
+        <result column="age" property="age"/>
+        <result column="sex" property="sex"/>
+        <result column="addr" property="addr"/>
+        <result column="emergencyCall" property="emergencyCall"/>
+        <result column="departmentId" property="departmentId"/>
+        <result column="positionId" property="positionId"/>
+        <result column="userNum" property="userNum"/>
+        <result column="pay" property="pay"/>
+    </resultMap>
+
+    <select id="doLogin" resultMap="yonghu">
+    select * from Yonghu where userName=#{username} and password=#{password}
+
+    }
+
+    </select>
+
+    <select id="selectOne" parameterType="com.qianyuan.entity.test.LcMenu">
+        select * from lc_menu where menu_id=#{menu_id}
+    </select>
+</mapper>
